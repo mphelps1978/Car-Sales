@@ -1,5 +1,4 @@
-export const ADD_UPGRADE = 'ADD_UPGRADE';
-export const REMOVE_FEATURE = 'REMOVE_FEATURE';
+
 
 export const addFeature = item => {
   console.log(item)
@@ -8,3 +7,8 @@ export const addFeature = item => {
     payload: item
   };
 }
+
+export const removeFeature = feature => ({
+  type: 'REMOVE_FEATURE',
+  payload: feature
+})

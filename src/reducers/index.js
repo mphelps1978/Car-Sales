@@ -23,41 +23,35 @@ export const reducers = (state = initialState, action) => {
   console.log ('3 ', state.car)
   console.log ('4 ', state.car.features)
 
-  switch (action.type) {
-    case ADD_UPGRADE:
-      return {
-        ...state,
-        additionalPrice:
-          state.additionalPrice +
-          state.store.find(item => item.id === action.payload).price,
-        car: {
-          ...state.car,
-          features: [
-            ...state.car.features,
-            state.upgrades.find(item => item.id === action.payload),
-          ],
-        },
-        store: state.upgrades.filter(item => item.id !== action.payload),
-      };
-    case REMOVE_FEATURE:
-      return {
-        ...state,
-        additionalPrice:
-          state.additionalPrice -
-          state.car.features.find(item => item.id === action.payload).price,
-        car: {
-          ...state.car,
-          features: state.car.features.filter(
-            item => item.id !== action.payload,
-          ),
-        },
-        store: [
-          ...state.store,
-          state.car.features.find(item => item.id === action.payload),
-        ],
-      };
-    default:
-      return state;
+  switch (action.type){
+    case 'ADD_FEATURE':
+      console.log ('The Payload: ', action.payload)
+      if(!state.car.features.includes(action.payload)) {
+        return {
+          ...state,
+          car: {...state.car,
+            features: [...state.car.features, action.payload]
+          },
+          additionalPrice: state.additionalPrice + action.payload.price
+        }
+      } else {
+        return {
+          ...state
+        }
+      }
+    // case 'REMOVE_FEATURE':
+    //   return{
+    //     ...state,
+    //     additionalPrice: state.additionalPrice - action.payload.price,
+    //     car: {
+    //       ...state.car,
+    //       features: state.car.features.filter(
+    //         item => item.id !== action.payload.id
+    //       )
+    //     }
+    //   }
+      default:
+        return state
   }
 };
 
