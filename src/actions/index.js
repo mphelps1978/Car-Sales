@@ -1,14 +1,18 @@
+export const ADD_UPGRADE = 'ADD_UPGRADE';
+export const REMOVE_FEATURE = 'REMOVE_FEATURE';
 
-
-export const addFeature = item => {
-  console.log(item)
+export const addFeature = id => {
+  // console.log(id)
   return {
-    type: 'ADD_UPGRADE',
-    payload: item
+    type: ADD_UPGRADE,
+    payload: id
   };
 }
 
-export const removeFeature = feature => ({
-  type: 'REMOVE_FEATURE',
-  payload: feature
-})
+export const removeFeature = id => {
+  console.log ('Remove ID: ', id)
+  return {
+  type: REMOVE_FEATURE,
+  payload: id
+  };
+}

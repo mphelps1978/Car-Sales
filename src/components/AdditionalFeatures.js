@@ -5,7 +5,13 @@ import { connect } from 'react-redux'
 
 import { addFeature } from '../actions'
 
+
+
 const AdditionalFeatures = props => {
+
+  const handleAddFeature = (id) => {
+    return props.addFeature(id);
+  }
   // console.log('Props from App: ', props)
   return (
     <div className="content">
@@ -16,7 +22,7 @@ const AdditionalFeatures = props => {
             <AdditionalFeature
             key={item.id}
             upgrades={item}
-            addFeature={addFeature} />
+            handleAddFeature={handleAddFeature} />
           ))}
         </ol>
       ) : (

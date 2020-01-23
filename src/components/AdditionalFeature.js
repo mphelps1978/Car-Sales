@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addFeature } from '../actions/'
+
 
 const AdditionalFeature = props => {
   // console.log('Props from AdditionalFeatures: ', props)
@@ -11,7 +11,7 @@ const AdditionalFeature = props => {
       {/* Add an onClick that will let you add a feature to your car */}
       <button
       className="button"
-      onClick={() => props.addFeature(props.upgrades)}>
+      onClick={() => props.handleAddFeature(props.upgrades.id)}>
       Add
       </button>
       {props.upgrades.name} (+{props.upgrades.price})
