@@ -10,13 +10,10 @@ import { removeFeature } from './actions';
 
 const App = props => {
   const handleRemoveFeature = id => {
-    // dispatch an action here to remove an item
     props.removeFeature(id);
   };
 
-  // const buyItem = item => {
-  //   // dispatch an action here to add an item
-  // };
+
 
   return (
     <div className='boxes'>
