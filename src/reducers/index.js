@@ -20,51 +20,40 @@ export const initialState = {
 
 
 export const reducers = (state = initialState, action) => {
-  // console.log ('1 ', state)
-  // console.log ('2 ', state.upgrades)
-  // console.log ('3 ', state.car)
-  // console.log ('4 ', state.car.features)
-  // console.log('store: ',state.car)
-
-  switch (action.type){
+  switch (action.type) {
     case ADD_UPGRADE:
-      console.log ('The Add Payload: ', action.payload)
-
       return {
         ...state,
-        additionalPrice: state.additionalPrice +
-        state.upgrades.find(item => item.id === action.payload).price,
-
-        car: {...state.car,
-          features: [...state.car.features,
-          state.upgrades.find(item => item.id === action.payload)]
+        additionalPrice:
+          state.additionalPrice +
+          state.upgrades.find(item => item.id === action.payload).price,
+        car: {
+          ...state.car,
+          features: [
+            ...state.car.features,
+            state.upgrades.find(item => item.id === action.payload),
+          ],
         },
-        upgrades: state.upgrades.filter(item => item.id !== action.payload)
-
+        upgrades: state.upgrades.filter(item => item.id !== action.payload),
       };
     case REMOVE_FEATURE:
-      console.log('The Remove Payload: ', action.payload);
-
       return {
-      ...state,
-      additionalPrice: state.additionalPrice -
-      state.car.features.find(item => item.id === action.payload).price,
-      car: {
-        ...state.car,
-        features: [
-          ...state.car.features,
-          state.car.features.filter(item => item.id === action.payload),
-          ]
-      },
-      upgrades: [
-        ...state.upgrades,
-        state.car.features.find(item => item.id === action.payload),
-      ],
-    };
+        ...state,
+        additionalPrice:
+          state.additionalPrice -
+          state.car.features.find(item => item.id === action.payload).price,
+        car: {
+          ...state.car,
+          features: state.car.features.filter(
+            item => item.id !== action.payload,
+          ),
+        },
+        upgrades: [
+          ...state.upgrades,
+          state.car.features.find(item => item.id === action.payload),
+        ],
+      };
     default:
-      return state
-
-  };
-
-
-}
+      return state;
+  }
+};

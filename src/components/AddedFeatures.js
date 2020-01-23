@@ -2,31 +2,18 @@ import React from 'react';
 
 import AddedFeature from './AddedFeature';
 
-import { removeFeature } from '../actions/'
-
-
-
 const AddedFeatures = props => {
-  console.log('props on AddedFeatures ', props)
-
-  const handleRemoveFeature = id => {
-    return removeFeature(id);
-  };
-
-
-
   return (
-    <div className="content">
+    <div className='content'>
       <h6>Added features:</h6>
       {props.car.features.length ? (
-        <ol type="1">
+        <ol type='1'>
           {props.car.features.map(item => (
             <AddedFeature
-             key={item.id}
-             feature={item}
-             handleRemoveFeature={handleRemoveFeature}
-
-             />
+              key={item.id}
+              feature={item}
+              handleRemoveFeature={props.handleRemoveFeature}
+            />
           ))}
         </ol>
       ) : (
@@ -36,7 +23,4 @@ const AddedFeatures = props => {
   );
 };
 
-
-
 export default AddedFeatures;
-
