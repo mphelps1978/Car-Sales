@@ -3,7 +3,7 @@ import AdditionalFeature from './AdditionalFeature';
 
 import { connect } from 'react-redux'
 
-import { addFeature } from '../actions/'
+import { addFeature } from '../actions'
 
 const AdditionalFeatures = props => {
   console.log('Props from App: ', props)

@@ -18,13 +18,18 @@ export const initialState = {
 
 
 export const reducers = (state = initialState, action) => {
+  console.log ('1 ', state)
+  console.log ('2 ', state.upgrades)
+  console.log ('3 ', state.car)
+  console.log ('4 ', state.car.features)
+
   switch (action.type) {
     case ADD_UPGRADE:
       return {
         ...state,
         additionalPrice:
           state.additionalPrice +
-          state.upgrades.find(item => item.id === action.payload).price,
+          state.store.find(item => item.id === action.payload).price,
         car: {
           ...state.car,
           features: [
@@ -34,9 +39,25 @@ export const reducers = (state = initialState, action) => {
         },
         store: state.upgrades.filter(item => item.id !== action.payload),
       };
+    case REMOVE_FEATURE:
+      return {
+        ...state,
+        additionalPrice:
+          state.additionalPrice -
+          state.car.features.find(item => item.id === action.payload).price,
+        car: {
+          ...state.car,
+          features: state.car.features.filter(
+            item => item.id !== action.payload,
+          ),
+        },
+        store: [
+          ...state.store,
+          state.car.features.find(item => item.id === action.payload),
+        ],
+      };
     default:
       return state;
-
   }
 };
 
